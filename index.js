@@ -24,6 +24,7 @@ app.use('/products', productsRouter);
 // Swagger docs 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// Unhandled Error
 app.use(function (err, req, res, next) {
 	return res.status(400).send({
     status: "fail",
@@ -33,5 +34,8 @@ app.use(function (err, req, res, next) {
 
 // start server
 var server = app.listen(3000, function () {
-    console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
+	console.log("listening on 3000")
+    // console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
 });
+
+module.exports = server

@@ -124,9 +124,27 @@ var dbCountBuilder = async (collection, query) => {
 		throw error;
 	}
 };
+var dbDeleteDocument = async (collection, condition) => {
+	var model;
+	model = getModel(collection);
+	if (!model) {
+		return {
+			status: 'fail',
+			message: 'Missing collection name.'
+		};
+	};
+	try {
+		var modelQB = model.deleteMany(condition.query);
+		var data = await modelQB.exec()
+		return data;
+	} catch (error) {
+		return error;
+	}
+};
 module.exports = {
 	'create': dbCreateDocument,
 	'findOne': dbQueryBuilder,
 	'find': dbFindBuilder,
 	'count': dbCountBuilder,
+	'delete': dbDeleteDocument
 };

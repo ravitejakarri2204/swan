@@ -12,6 +12,12 @@ router.post('/login', loginUser);
 module.exports = router;
 
 function registerUser(req, res) {
+    if (!(req.body.username && req.body.password)) {
+        return res.status(400).send({
+            status: "fail",
+            message: "Mandatory fields not provided."
+        });
+    };
     dbhelper.create("users", req.body)
     .then(function () {
         return res.status(200).send({status: "success", message: "User created successfully."});
@@ -22,9 +28,7 @@ function registerUser(req, res) {
 }
 
 function loginUser (req, res) {
-		console.log(req.body)
 	if (!(req.body.username && req.body.password)) {
-		console.log(req.body)
 		return res.status(400).send({
 			status: "fail",
 			message: "Mandatory fields not provided."
