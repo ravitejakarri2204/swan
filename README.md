@@ -30,6 +30,15 @@ Install the dependencies and devDependencies and start the server.
 npm install
 ```
 
+
+## Test
+
+Currently the test suite is testing /users/register route only.
+
+```sh
+npm test
+```
+
 ## Start
 
 By default the server was to run on 3000 port.
